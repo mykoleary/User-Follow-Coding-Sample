@@ -20,29 +20,33 @@ THOUGHTS / EXPLANATIONS
 ========================
 * added scope :without_user to User model to allow for removing the passed user from results for non followers query - we may want to re-use this
 * no pagination was put in place due to approaching this as more of a logic exercise and less of a complete site exercise
-* added ability to remove users from user list screen - would be accessible to admins only
+* added ability to remove users from user list screen - would be accessible to administrators only
 * following and followers lists on profile page show text when no users are found for the query
 * the "all users you are not following" block is not displayed if there are no more users to follow.
 * a default avatar has been chosen 
-* used default sqlite3 DB to allow for pre-stocked data.  For clean view of app:
-** rm -rf db/development.sqlite3
-** rake db:create
-** rake db:migrate
+* used default sqlite3 DB to allow for base data.  For clean view of application:
+    * rm -rf db/development.sqlite3
+    * rake db:create
+    * rake db:migrate
+* the DB would normally have a rake task to populate with sample data, but this exercise was about the follow logic
 
-NOT DONE:
-=========
-* better security around which user scaffold actions are visible
-* remove cruft added by scaffold and rails project generation that is not needed
-* remove un-used icons from icon sets
-* better abstraction of modular code into individual views instead of being inline for better repeatability
 
 IMPROVEMENTS:
 =============
+* better security around which user scaffold actions are accessible
+* remove cruft added by scaffold and rails project generation that is not needed/used
+* remove unused icons from icon sets
+* better abstraction of modular code into individual views instead of being in-line to be more repeatable (userBlocks & userBlock <div>s for one)
+* unit tests to verify logic always works as expected with additional changes.
 * more profile information
 * ability to post a custom avatar
-* logins and ability to then use 'current_user' instead of passing it as hiden field in forms.
-* admin ability to perform actions for people
+* logins and ability to then use 'current_user' instead of passing it as hidden field in forms.
+* administrator ability to perform actions for people
 * more interesting data (posts, feed, etc) than just a picture of your followers
 * better UI
 * more flexible UI for followers to show more on one page
 * add pagination
+* e-mails (configurable as to which you get)
+    * when someone follows you - with a link to follow them back
+    * daily/weekly/etc with information shared by those you follow
+    * each time someone you follow has action
