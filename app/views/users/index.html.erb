@@ -3,6 +3,9 @@
     <div class="usersBlock">
         <% @users.each do |user| %>
             <div class="userBlock roundedCorners">
+                <div class="overlay">
+                    <%= link_to image_tag("icons/classy-icons-set/png/32x32/remove.png", :title=>"Delete " + user.name, :alt=>"Delete " + user.name), user, :confirm => 'Are you sure?', :method => :delete %>
+                </div>
                 <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>user.name, :alt=>user.name), user %>
                 <div><%= link_to user.name, user %></div>
             </div>
