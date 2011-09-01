@@ -1,0 +1,28 @@
+Rails Exercise:
+===============
+We'd like you to create a simple Rails 3 application.
+Create models that allow a user to follow another user.
+The user model's only attribute is "name". You may scaffold the create action.
+Create an interface that accepts post requests that allows users to
+"follow" other users.
+
+The user's "index" action should list all of the users.
+The user's "show" action should show:
+1) The user's name
+2) The users the user is currently following (with a button to remove
+that following)
+3) The users the user is not following (with a button to add that following)
+4)  The users currently following this user
+Do not create a login system for this exercise.
+
+
+THOUGHTS / EXPLANATIONS
+========================
+* added scope :without_user to User model to allow for removing the passed user from results for non followers query - we may want to re-use this
+* no pagination was put in place due to approaching this as more of a logic exercise and less of a complete site exercise
+
+TODO:
+=====
+* better security around which user scaffold actions are visible
+* remove cruft added by scaffold and rails project generation that is not needed
+* remove un-used icons from icon sets

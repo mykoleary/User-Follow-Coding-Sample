@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Profile</h1>
+    <div class="usersBlock">
+        <div class="userBlock roundedCorners">
+            <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>@user.name, :alt=>@user.name), @user %>
+            <div><%= link_to @user.name, @user %></div>
+        </div>
+    </div>
+
+<h1>Following (<%= @user.following.count %>)</h1>
+    <% if @user.following.count > 0%>
+        <div class="usersBlock">
+            <% @user.following.each do |user| %>
+                <div class="userBlock roundedCorners">
+                    <div class="overlay">
+                        <%= form_for @user.relationships.find_by_followed_id(user),
+                                     :html => { :method => :delete } do |f| %>
+                            <div>
+                                <%= f.hidden_field :follower_id %>
+                            </div>
+                            <%= image_submit_tag("icons/classy-icons-set/png/32x32/remove.png") %>
+                        <% end %>
+                    </div>
+                    <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>user.name, :alt=>user.name), user %>
+                    <div><%= link_to user.name, user %></div>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="usersBlockEmpty">
+            You are not following anyone; make friends with a user below.
+        </div>
+    <% end %>
+
+<% if @non_followers.count >0 %>
+<h1>All Users You're Not Following</h1>
+    <div class="usersBlock">
+        <% @non_followers.each do |user| %>
+            <div class="userBlock roundedCorners">
+                <div class="overlay">
+                    <%= form_for @user.relationships.
+                        build(:followed_id => user.id, :follower_id=>@user.id) do |f| %>
+                        <div>
+                            <%= f.hidden_field :followed_id %>
+                            <%= f.hidden_field :follower_id %>
+                        </div>
+                        <%= image_submit_tag("icons/classy-icons-set/png/32x32/add.png") %>
+                    <% end %>
+                </div>
+                <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>user.name, :alt=>user.name), user %>
+                <div><%= link_to user.name, user %></div>
+            </div>
+        <% end %>
+    </div>
+<% end %>
+
+<h1>Followers (<%= @user.followers.count %>)</h1>
+    <% if @user.followers.count > 0%>
+        <div class="usersBlock">
+            <% @user.followers.each do |user| %>
+                <div class="userBlock roundedCorners">
+                    <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>user.name, :alt=>user.name), user %>
+                    <div><%= link_to user.name, user %></div>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="usersBlockEmpty">
+            No one is following you; perhaps no one likes you?
+        </div>
+    <% end %>
+

@@ -1,0 +1,17 @@
+<h1>User List <%= link_to image_tag("icons/classy-icons-set/png/32x32/user_add.png", :title=>"New User"), new_user_path %></h1>
+
+    <div class="usersBlock">
+        <% @users.each do |user| %>
+            <div class="userBlock roundedCorners">
+                <%= link_to image_tag("icons/classy-icons-set/png/64x64/user.png", :title=>user.name, :alt=>user.name), user %>
+                <div><%= link_to user.name, user %></div>
+            </div>
+          <!--<tr>
+            <td><%= link_to user.name, user %></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>-->
+        <% end %>
+    </div>
+
+

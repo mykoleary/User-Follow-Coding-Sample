@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UserFollow</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag 'functions', 'libs/jquery-1.5.1.min' %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="modalShade" class="opaque" style="display:none;" name="modalShade" onClick="javascript:hideModals();">&nbsp;</div>
+
+    <div id="container" class="dropshadow">
+        <div class="header">
+            <a href="/">Super Awesome User Site</a>
+        </div>
+        <div class="content">
+            <%= yield %>
+        </div>
+    
+        <div class="footer">
+            <ul id="copyrightish">
+                <li>Content Copyright 2011 Myk O'Leary</li>
+                <li><a href="javascript:showModal('ThirdPartyResources');">3rd Party Resources Used</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="ThirdPartyResources" class="modal roundedCorners" style="display: none;">
+        <a href="javascript:hideModals();"><img class="closeModalIcon" src="/images/icons/blue-velvet/png/32x32/close.png" alt="close"/></a>
+        <h1> / Shout Outs</h1>
+        
+        <br/><br/>
+        <div id="dryicons"><span>Swanky icons provided by </span><a target="_blank" href="http://dryicons.com"><img src="/images/logos/dryicons_logo_170x48.png" alt="Dry Icons link"></a></div>
+    </div>
+
+</body>
+</html>
